@@ -53,7 +53,7 @@ The same control summary can be shown inside the viewport through **View → Con
 - Plane-like `.obj` files can be imported and converted into editable terrain.
 - STL and FBX preview import is intentionally not included in this CDN-free vanilla WebGL build.
 - OBJ export, ASCII STL export and 16-bit grayscale PNG heightmap export are available.
-- The in-app documentation is loaded from `assets/Docu.md` and can be edited without changing the JavaScript.
+- The in-app documentation is loaded from `assets/Doku.md` and can be edited without changing the JavaScript.
 
 ---
 
@@ -124,7 +124,7 @@ The left panel includes controls for brightness, light temperature and fog densi
 The info button in the top right opens a formatted documentation panel. Its content is loaded from:
 
 ```text
-assets/Docu.md
+assets/Doku.md
 ```
 
 Edit that file to customize the in-app help text. Keep the app running through a local webserver so the browser can fetch the Markdown file.
@@ -143,7 +143,7 @@ TERRAit_static_web_v5/
 ├─ js/
 │  └─ app.js
 └─ assets/
-   ├─ Docu.md
+   ├─ Doku.md
    ├─ fonts/
    │  ├─ OpenSans-Regular.ttf
    │  └─ OpenSans-Semibold.ttf
@@ -161,15 +161,30 @@ TERRAit_static_web_v5/
 
 ---
 
-## Offline Usage
+## Offline Usage (planned)
 
 The editor is intended to work without internet access after the ZIP has been extracted. Do not replace the local vendor paths with CDN links if the project should stay offline-capable.
 
 ---
 
-## Known Scope
+## TERRAit Scope
 
 TERRAit is a compact static editor for fast terrain blocking and manual sculpting. It is not a full GIS, simulation or CAD application. Complex asset import/export pipelines are intentionally kept small to preserve the lightweight workflow.
+
+---
+
+## License
+
+Copyright (c) 2026 complicatiion aka sksdesign aka sven404  
+All rights reserved unless explicitly granted below or otherwise mentioned/licensed, or generally based on an open-source license.
+
+See further details in:
+
+```text
+LICENSE.md
+```
+
+Review the license before redistribution or commercial/internal reuse.
 
 ---
 
