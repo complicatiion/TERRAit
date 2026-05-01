@@ -1,4 +1,4 @@
-![TERRAit](public/assets/img/TERRAit-logo-massive.png)
+![TERRAit](/assets/img/TERRAit-logo-massive.png)
 
 # TERRAit Static Web Terrain Editor
 
