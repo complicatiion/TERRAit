@@ -4,8 +4,6 @@
 
 TERRAit is a lightweight static terrain editor for fast manual landscape blocking, sculpting and heightmap export. It is designed for a quick local workflow without Electron, Node.js or an installation step. The application runs from plain project files and stores/export data through browser download and upload APIs.
 
-The V1.1.5 build is prepared for offline use. External CDN references were removed and the required UI compatibility files are included locally in `assets/vendor/`. The renderer uses vanilla WebGL2, so the editor does not need Three.js from a CDN.
-
 ---
 
 ## Start
