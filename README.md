@@ -22,7 +22,7 @@ http://127.0.0.1:8080/
 
 A local webserver is required because browsers block some file loading features when opening `index.html` directly from disk. The starter uses Python's built-in static webserver if Python is installed. Any other static webserver works as well.
 
-Note:.Python Installation is recommended!
+Note: Python Installation is recommended!
 
 ---
 
@@ -134,7 +134,7 @@ Edit that file to customize the in-app help text. Keep the app running through a
 ## Folder Structure
 
 ```text
-TERRAit_static_web_v5/
+TERRAit/
 ├─ index.html
 ├─ start_webserver.bat
 ├─ README.md
@@ -161,12 +161,6 @@ TERRAit_static_web_v5/
 
 ---
 
-## Offline Usage (planned)
-
-The editor is intended to work without internet access after the ZIP has been extracted. Do not replace the local vendor paths with CDN links if the project should stay offline-capable.
-
----
-
 ## TERRAit Scope
 
 TERRAit is a compact static editor for fast terrain blocking and manual sculpting. It is not a full GIS, simulation or CAD application. Complex asset import/export pipelines are intentionally kept small to preserve the lightweight workflow.
@@ -175,7 +169,7 @@ TERRAit is a compact static editor for fast terrain blocking and manual sculptin
 
 ## License
 
-Copyright (c) 2026 complicatiion aka sksdesign aka sven404  
+Copyright © 2026 complicatiion aka sksdesign aka sven404  
 All rights reserved unless explicitly granted below or otherwise mentioned/licensed, or generally based on an open-source license.
 
 See further details in:
@@ -188,7 +182,7 @@ Review the license before redistribution or commercial/internal reuse.
 
 ---
 
-### © complicatiion aka sksdesign · 2026 
+### © · complicatiion aka sksdesign 
 
 ---
 
