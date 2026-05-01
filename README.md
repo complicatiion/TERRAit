@@ -2,7 +2,7 @@
 
 # TERRAit Static Web Terrain Editor
 
-TERRAit is a lightweight static terrain editor for fast manual landscape blocking, sculpting and heightmap export. It is designed for a quick local workflow without Electron, Node.js or an installation step. The application runs from plain project files and stores/export data through browser download and upload APIs.
+TERRAit is a lightweight static terrain editor for fast manual landscape blocking, sculpting and heightmap export. The application runs from plain project files and stores/export data through browser download and upload APIs.
 
 ---
 
@@ -21,6 +21,8 @@ http://127.0.0.1:8080/
 ```
 
 A local webserver is required because browsers block some file loading features when opening `index.html` directly from disk. The starter uses Python's built-in static webserver if Python is installed. Any other static webserver works as well.
+
+Note:.Python Installation is recommended!
 
 ---
 
@@ -96,7 +98,7 @@ The **Polygons / Tessellation** slider controls the terrain grid resolution. Hig
 
 ### Extras
 
-**Random Terrain** is a one-shot generator. It creates a complete procedural landscape with layered noise and does not remain selected as a sculpt tool.
+**Random Terrain** is a one-shot generator. It creates a complete procedural landscape with layered noise.
 
 ---
 
