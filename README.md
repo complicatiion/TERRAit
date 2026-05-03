@@ -2,7 +2,36 @@
 
 # TERRAit Static Web Terrain Editor
 
-TERRAit is a lightweight static terrain editor for fast manual landscape blocking, sculpting and heightmap export. The application runs from plain project files and stores/export data through browser download and upload APIs.
+TERRAit is a lightweight static terrain editor for fast manual landscape blocking, sculpting and heightmap export.
+The application runs from project files and stores/export data through browser download and upload APIs.
+
+---
+
+## Prerequisites (Python)
+
+### 1. Dependencies
+This tool requires the following environments:
+* **Python 3.12+:** Required for script execution.
+
+
+### 2. Installation (Windows)
+
+#### Option A: Command Line (cmd)
+Install via Windows Package Manager (**winget**):
+```cmd
+winget install Python.Python or Python.Python.3.12
+```
+
+#### Option B: use Python Manager, additional Infos down below!
+
+```
+https://docs.python.org/dev/using/windows.html
+```
+#### Option C: use Standard .exe Package to Install python to your System
+
+```
+https://www.python.org/downloads/windows/
+```
 
 ---
 
@@ -21,8 +50,6 @@ http://127.0.0.1:8080/
 ```
 
 A local webserver is required because browsers block some file loading features when opening `index.html` directly from disk. The starter uses Python's built-in static webserver if Python is installed. Any other static webserver works as well.
-
-Note: Python Installation is recommended!
 
 ---
 
@@ -98,7 +125,7 @@ The **Polygons / Tessellation** slider controls the terrain grid resolution. Hig
 
 ### Extras
 
-**Random Terrain** is a one-shot generator. It creates a complete procedural landscape with layered noise.
+**Random Terrain** is a one-shot generator. It creates a complete procedural landscape with layered noise and does not remain selected as a sculpt tool.
 
 ---
 
@@ -134,7 +161,7 @@ Edit that file to customize the in-app help text. Keep the app running through a
 ## Folder Structure
 
 ```text
-TERRAit/
+TERRAit_static_web_v5/
 ├─ index.html
 ├─ start_webserver.bat
 ├─ README.md
@@ -161,6 +188,12 @@ TERRAit/
 
 ---
 
+## Offline Usage (planned)
+
+The editor is intended to work without internet access after the ZIP has been extracted. Do not replace the local vendor paths with CDN links if the project should stay offline-capable.
+
+---
+
 ## TERRAit Scope
 
 TERRAit is a compact static editor for fast terrain blocking and manual sculpting. It is not a full GIS, simulation or CAD application. Complex asset import/export pipelines are intentionally kept small to preserve the lightweight workflow.
@@ -169,7 +202,7 @@ TERRAit is a compact static editor for fast terrain blocking and manual sculptin
 
 ## License
 
-Copyright © 2026 complicatiion aka sksdesign aka sven404  
+Copyright (c) 2026 complicatiion aka sksdesign aka sven404  
 All rights reserved unless explicitly granted below or otherwise mentioned/licensed, or generally based on an open-source license.
 
 See further details in:
@@ -182,7 +215,7 @@ Review the license before redistribution or commercial/internal reuse.
 
 ---
 
-### © · complicatiion aka sksdesign 
+### © complicatiion aka sksdesign · 2026 
 
 ---
 

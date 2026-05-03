@@ -3,22 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TERRAit Static Web Terrain Editor V1.1.4</title>
-  <meta name="description" content="TERRAit static web terrain editor based on Bootstrap and Three.js.">
+  <title>TERRAit Terrain Editor</title>
+  <meta name="description" content="TERRAit Terrain Editor">
 
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/logo.png">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
-
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.184.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.184.0/examples/jsm/"
-    }
-  }
-  </script>
 </head>
 <body>
   <div id="appShell">
@@ -27,15 +18,15 @@
         <div class="brand-mark">
           <img src="assets/img/logo.png" alt="TERRAit Logo" class="brand-logo">
         </div>
-        <div>
+        <div class="brand-copy d-flex align-items-center">
           <h1 class="h5 mb-0 fw-semibold">TERRAit</h1>
-          <div class="tiny text-secondary"> </div>
         </div>
       </div>
       <div class="d-flex align-items-center gap-2 toolbar-actions">
         <span id="statusBadge" class="status-badge">READY</span>
         <button id="resetCameraBtn" class="btn btn-sm btn-outline-light btn-pill">Reset Camera</button>
         <button id="newProjectBtn" class="btn btn-sm btn-primary glow-btn btn-pill">New</button>
+        <button id="controlsBtn" class="btn btn-sm btn-outline-primary btn-icon btn-pill" type="button" title="Controls" aria-label="Open controls">⌨</button>
         <button id="infoBtn" class="btn btn-sm btn-outline-primary btn-icon btn-pill" type="button" title="Documentation" aria-label="Open documentation">i</button>
       </div>
     </header>
@@ -87,9 +78,25 @@
 
         <hr>
 
+        <div class="section-title">History</div>
+        <div class="history-actions">
+          <button id="undoBtn" class="btn btn-sm btn-outline-light btn-pill" type="button" disabled>Undo</button>
+          <button id="redoBtn" class="btn btn-sm btn-outline-light btn-pill" type="button" disabled>Redo</button>
+        </div>
+        <div class="history-status mt-2">
+          <span id="historyState">No terrain changes yet</span>
+          <span id="historyCount" class="history-count">0 / 0</span>
+        </div>
+        <div class="hint mt-2">Use Ctrl+Z to undo and Ctrl+Y or Ctrl+Shift+Z to redo terrain edits.</div>
+
+        <hr>
+
         <div class="section-title">Viewport Tuning</div>
         <label class="control-label range-label" for="brightnessRange">Brightness <span id="brightnessValue">100%</span></label>
         <input id="brightnessRange" class="form-range blue-range" type="range" min="60" max="150" step="5" value="100">
+
+        <label class="control-label range-label" for="temperatureRange">Light Temperature <span id="temperatureValue">65%</span></label>
+        <input id="temperatureRange" class="form-range blue-range" type="range" min="0" max="100" step="1" value="65">
 
         <label class="control-label range-label" for="fogRange">Fog Density <span id="fogValue">35%</span></label>
         <input id="fogRange" class="form-range blue-range" type="range" min="0" max="100" step="1" value="35">
@@ -98,7 +105,7 @@
       </div>
 
       <footer class="left-footer">
-        <span class="version-pill">V1.1.4</span>
+        <span class="version-pill">V1.1.8</span>
         <a href="https://github.com/complicatiion/TERRAit" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
       </footer>
     </aside>
@@ -186,12 +193,40 @@
         <div class="modal-header border-primary-subtle">
           <div>
             <h2 id="docsModalTitle" class="modal-title h5 mb-0">TERRAit Documentation</h2>
-            <div class="tiny text-secondary">Loaded from assets/Doku.md</div>
+            <div class="tiny text-secondary">Loaded from assets/Docu.md</div>
           </div>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div id="docsContent" class="docs-content">Loading documentation...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="modal fade" id="controlsModal" tabindex="-1" aria-labelledby="controlsModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+      <div class="modal-content docs-modal glass-panel">
+        <div class="modal-header border-primary-subtle">
+          <div>
+            <h2 id="controlsModalTitle" class="modal-title h5 mb-0">TERRAit Controls</h2>
+            <div class="tiny text-secondary">Quick navigation and editing shortcuts</div>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body controls-modal-body">
+          <div class="shortcut-row"><span class="keyboard-chip">Left Drag</span><span>Sculpt terrain with the selected tool</span></div>
+          <div class="shortcut-row"><span class="keyboard-chip">Shift + Left Drag</span><span>Invert brush direction where supported</span></div>
+          <div class="shortcut-row"><span class="keyboard-chip">Ctrl + Left Drag</span><span>Pan / move the viewport</span></div>
+          <div class="shortcut-row"><span class="keyboard-chip">Alt + Left Drag</span><span>Orbit / rotate camera</span></div>
+          <div class="shortcut-row"><span class="keyboard-chip">Alt + Middle Drag</span><span>Pan / move camera target</span></div>
+          <div class="shortcut-row"><span class="keyboard-chip">Alt + Right Drag</span><span>Dolly / zoom camera</span></div>
+          <div class="shortcut-row"><span class="keyboard-chip">Mouse Wheel</span><span>Zoom in or out</span></div>
+          <div class="shortcut-row"><span class="keyboard-chip">1 / 2 / 3 + Drag</span><span>Pan / zoom / orbit, Cinema-4D style</span></div>
+          <div class="shortcut-row"><span class="keyboard-chip">Ctrl + Z</span><span>Undo last terrain action</span></div>
+          <div class="shortcut-row"><span class="keyboard-chip">Ctrl + Y</span><span>Redo terrain action</span></div>
         </div>
       </div>
     </div>
@@ -207,7 +242,7 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script type="module" src="js/app.js"></script>
 </body>
 <!-- sksdesign © 2026 -->

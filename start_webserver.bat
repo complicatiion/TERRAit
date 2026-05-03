@@ -2,23 +2,37 @@
 setlocal
 cd /d "%~dp0"
 
-echo Starting TERRAit Static Web V1.1.4 on http://127.0.0.1:8080/
+set TERRAIT_PORT=8080
+set TERRAIT_URL=http://127.0.0.1:%TERRAIT_PORT%/
+
+echo Starting TERRAit Static Web V1.1.8 on %TERRAIT_URL%
 echo.
+
+where node >nul 2>nul
+if %errorlevel%==0 (
+  start "TERRAit Local Server" /min cmd /c "node tools\local_server.js %TERRAIT_PORT%"
+  timeout /t 1 /nobreak >nul
+  start "" "%TERRAIT_URL%"
+  goto :eof
+)
 
 where python >nul 2>nul
 if %errorlevel%==0 (
-  start "TERRAit" http://127.0.0.1:8080/
-  python -m http.server 8080 --bind 127.0.0.1
+  start "TERRAit Local Server" /min cmd /c "python -m http.server %TERRAIT_PORT% --bind 127.0.0.1"
+  timeout /t 1 /nobreak >nul
+  start "" "%TERRAIT_URL%"
   goto :eof
 )
 
 where py >nul 2>nul
 if %errorlevel%==0 (
-  start "TERRAit" http://127.0.0.1:8080/
-  py -m http.server 8080 --bind 127.0.0.1
+  start "TERRAit Local Server" /min cmd /c "py -m http.server %TERRAIT_PORT% --bind 127.0.0.1"
+  timeout /t 1 /nobreak >nul
+  start "" "%TERRAIT_URL%"
   goto :eof
 )
 
-echo Python was not found. Open this folder with any static web server, for example VS Code Live Server.
+echo Node.js or Python was not found.
+echo Use any static local web server and open %TERRAIT_URL%
 pause
 REM sksdesign © 2026
